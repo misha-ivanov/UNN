@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <iomanip>
+#include <math.h>
 #include <time.h>
 
 using namespace std;
@@ -71,9 +72,9 @@ int main() {
 		}
 		for (int j = i+1; j < N; j++) {
 			tmp_double = (matrix[j][i] / matrix[i][i]);
-			for(int k = i; k < N; k++)
-			matrix[j][k] = matrix[j][k] - matrix[i][k] * tmp_double;
-		y[j] = y[j] - y[i]*tmp_double;
+		for (int k = i; k < N; k++)
+			matrix[j][k] = floor((matrix[j][k] - matrix[i][k] * tmp_double)*1000)/1000;
+		y[j] =floor(( y[j] - y[i]*tmp_double)*1000)/1000;
 		}
 	}
 
@@ -99,9 +100,9 @@ void PrintMatrix(double** _matrix, int _N, double* _x, double* _y, int* _equatio
 	for (int i = 0; i < _N; i++) {
 		cout << "equation #"<< setw(3) << _equation[i] << ":  ";
 		for (int j = 0; j < _N; j++) {
-			cout << left << setw(11) << setprecision(4) << _matrix[i][j] << "  ";
+			cout << left << setw(7) << setprecision(4) << _matrix[i][j] << "  ";
 		}
-		cout << left << "|" << left << setw(11) << setprecision(4) << _x[i] << " |" << left << setw(11) << setprecision(4) << _y[i] << endl;
+		cout << left << "|" << left << setw(7) << setprecision(4) << _x[i] << " |" << left << setw(7) << setprecision(4) << _y[i] << endl;
 	}
 	cout << endl;
 }
